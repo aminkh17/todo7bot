@@ -1,4 +1,4 @@
-const TELEGRAM_BOT_TOKEN: string = "438809632:AAHNN1lT6w-zeDZcpXjh-uxlvtVFO82XW-U";
+const TELEGRAM_BOT_TOKEN: string = "Your bot token here";
 import * as Slimbot from "slimbot";
 import { MongoClient } from "mongodb";
 

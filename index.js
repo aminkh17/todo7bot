@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var TELEGRAM_BOT_TOKEN = "438809632:AAHNN1lT6w-zeDZcpXjh-uxlvtVFO82XW-U";
+var TELEGRAM_BOT_TOKEN = "Your bot API TOKEN is here, catch it from @botFather";
 var Slimbot = require("slimbot");
 var mongodb_1 = require("mongodb");
 var slimbot = new Slimbot(TELEGRAM_BOT_TOKEN);
@@ -40,13 +40,27 @@ function sendMessage(element, message) {
     var subject = " *" + group + "* " + element.subject.replace("_", "-") + " _" + assign + "_ ";
     slimbot.sendMessage(message.chat.id, subject, optionalParams);
 }
-function sendHelp() {
-    console.log("List of commands");
+function sendHelp(message) {
+    var help = "Hi, I am a simple to do bot in Telegram, I can help you to do your tasks in your groups or individually, " +
+        " if you have any question contact my dad, Amin: amin.17@gmail.com";
+    slimbot.sendMessage(message.chat.id, help);
+    help = "Here is a list of Commands to do:";
+    slimbot.sendMessage(message.chat.id, help);
+    help = "/add [subject] \n To add a new task to do.";
+    slimbot.sendMessage(message.chat.id, help);
+    help = "/list \n List all tasks ready to do in a group or if you ask bot itself all tasks added by you in all places.";
+    slimbot.sendMessage(message.chat.id, help);
+    help = "/mine \n List all tasks assigned to you or if you ask bot itself all tasks assigned to you in all places.";
+    slimbot.sendMessage(message.chat.id, help);
+    help = "/dones \n List all tasks marked as done.";
+    slimbot.sendMessage(message.chat.id, help);
+    help = "/user [@username] or just type @username: \n List all tasks in group assigned to mentioned username.";
+    slimbot.sendMessage(message.chat.id, help);
 }
 function checkCommand(message, user, command, group) {
     console.log("command:" + command + " user:" + user + " group:" + group);
-    if (command === "help") {
-        sendHelp();
+    if (command === "help" || command === "/help" || command === "/start") {
+        sendHelp(message);
     }
     else if (command === "list" || command === "/list" || command === "/list@todo7bot") {
         mongodb_1.MongoClient.connect(constr, function (err, db) {
